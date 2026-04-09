@@ -1,70 +1,136 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>التوعية بالتوحد</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Task Manager</title>
+    <style>
+        /* Add some basic styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>التوعية بالتوحد - كيفية التعامل مع ذوي التوحد</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">عنا</a></li>
-                <li><a href="#steps">خطوات بسيطة</a></li>
-                <li><a href="#tips">نصائح مهمة</a></li>
-                <li><a href="#images">صور توضيحية</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="about">
-            <h2>ما هو التوحد؟</h2>
-            <p>التوحد هو اضطراب في التطور يؤثر على كيفية تفاعل الشخص مع الآخرين ومع العالم من حوله. يحتاج الأفراد المصابون بالتوحد إلى الفهم والدعم من المجتمع.</p>
-        </section>
-        <section id="steps">
-            <h2>5 خطوات بسيطة للتعامل مع الأفراد المصابين بالتوحد</h2>
-            <div class="steps">
-                <div class="step">
-                    <h3>الخطوة 1: كن صبورًا</h3>
-                    <p>أعطِ الشخص وقتًا كافيًا للتعبير عن نفسه والاستجابة. قد يحتاج إلى وقت أطول للفهم والرد.</p>
-                </div>
-                <div class="step">
-                    <h3>الخطوة 2: استخدم لغة بسيطة</h3>
-                    <p>تحدث بوضوح واستخدم جملاً بسيطة وسهلة الفهم. تجنب الكلمات المعقدة والعبارات المجازية.</p>
-                </div>
-                <div class="step">
-                    <h3>الخطوة 3: احترم المساحة الشخصية</h3>
-                    <p>بعض الأفراد قد يشعرون بعدم الراحة من الاقتراب الجسدي. احترم حدودهم الشخصية.</p>
-                </div>
-                <div class="step">
-                    <h3>الخطوة 4: تجنب الأصوات العالية المفاجئة</h3>
-                    <p>الأصوات العالية المفاجئة قد تسبب إزعاجًا شديدًا. حافظ على هدوء البيئة من حولك.</p>
-                </div>
-                <div class="step">
-                    <h3>الخطوة 5: كن داعمًا وإيجابيًا</h3>
-                    <p>قدّم المساعدة والدعم بطريقة إيجابية. اعترف بإنجازاتهم مهما كانت صغيرة.</p>
-                </div>
-            </div>
-        </section>
-        <section id="tips">
-            <h2>نصائح مهمة</h2>
-            <ul>
-                <li>✓ استمع باهتمام لما يقولونه</li>
-                <li>✓ لا تحاول تغيير سلوكهم بشكل مباشر</li>
-                <li>✓ ساعدهم في فهم التعليمات الصعبة</li>
-                <li>✓ كن مثابرًا ولطيفًا في تعاملك معهم</li>
-                <li>✓ احتفل بنجاحاتهم مهما كانت صغيرة</li>
-            </ul>
-        </section>
-        <section id="images">
-            <h2>صور توضيحية</h2>
-            <p>تساعد الصور والرسوم التوضيحية في فهم أفضل لكيفية التعامل مع الأفراد المصابين بالتوحد.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 التوعية بالتوحد. موقع يساعد المجتمع على فهم وتقبل ذوي التوحد</p>
-    </footer>
+    <h1>Task Manager</h1>
+    <button id="taskBtn">Tasks</button>
+    <button id="noteBtn">Notes</button>
+    <button id="homeworkBtn">Homework</button>
+    <button id="logoutBtn">Logout</button>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="taskClose">&times;</span>
+            <h2>Tasks</h2>
+            <p>Here you can add or view tasks.</p>
+            <!-- Add task input and list here -->
+        </div>
+    </div>
+
+    <div id="noteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="noteClose">&times;</span>
+            <h2>Notes</h2>
+            <p>Here you can add or view notes.</p>
+            <!-- Add note input and list here -->
+        </div>
+    </div>
+
+    <div id="homeworkModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="homeworkClose">&times;</span>
+            <h2>Homework</h2>
+            <p>Here you can add or view homework.</p>
+            <!-- Add homework input and list here -->
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const taskBtn = document.getElementById('taskBtn');
+        const taskModal = document.getElementById('taskModal');
+        const taskClose = document.getElementById('taskClose');
+
+        taskBtn.onclick = function() {
+            taskModal.style.display = 'block';
+        }
+
+        taskClose.onclick = function() {
+            taskModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == taskModal) {
+                taskModal.style.display = 'none';
+            }
+        }
+
+        // Repeat for notes and homework
+
+        const noteBtn = document.getElementById('noteBtn');
+        const noteModal = document.getElementById('noteModal');
+        const noteClose = document.getElementById('noteClose');
+
+        noteBtn.onclick = function() {
+            noteModal.style.display = 'block';
+        }
+
+        noteClose.onclick = function() {
+            noteModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == noteModal) {
+                noteModal.style.display = 'none';
+            }
+        }
+
+        const homeworkBtn = document.getElementById('homeworkBtn');
+        const homeworkModal = document.getElementById('homeworkModal');
+        const homeworkClose = document.getElementById('homeworkClose');
+
+        homeworkBtn.onclick = function() {
+            homeworkModal.style.display = 'block';
+        }
+
+        homeworkClose.onclick = function() {
+            homeworkModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == homeworkModal) {
+                homeworkModal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
